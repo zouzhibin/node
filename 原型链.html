@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Girl() {
+        this.name = 100;
+      }
+      Girl.prototype.a = 10;
+      function Animal() {
+        Girl.call(this);
+      }
+
+    function create(parentPrototype){
+        function Fn(){}
+        Fn.prototype = parentPrototype
+        return new Fn
+    }
+
+    //   Animal.prototype = Object.create(Girl.prototype);
+    console.log(create(Girl.prototype))
+      Animal.prototype = create(Girl.prototype);
+
+      let b = new Girl();
+      let c = new Animal();
+      console.log(c.__proto__.__proto__);
+    </script>
+  </body>
+</html>
